@@ -1,0 +1,9 @@
+__pycache__
+.ruff_cache/
+.mypy_cache/
+build/
+local/
+develop
+*.egg-info/
+merci/demo/cfg
+merci/demo/env/

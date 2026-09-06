@@ -1,0 +1,17 @@
+DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$DIR"
+
+export PYTHONPATH="$DIR/../..:$DIR/env"
+
+if [ "$PYTHON" == "" ]; then
+    PYTHON=python3
+fi
+
+if [ ! -d "env" ]; then
+    ${PYTHON} -m pip install -e ../.. -t env
+    ${PYTHON} -m pip install asyncpg==0.31.0 -t env
+    ${PYTHON} -u -m app upgrade head
+    echo
+fi
+
+exec "$PYTHON" -u -m app "$@"
